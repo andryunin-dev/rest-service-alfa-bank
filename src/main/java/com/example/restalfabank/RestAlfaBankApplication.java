@@ -1,5 +1,6 @@
 package com.example.restalfabank;
 
+import com.example.restalfabank.service.WriteDbService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,6 +19,11 @@ public class RestAlfaBankApplication implements ApplicationRunner {
     @Value("${xml.input.url}")
     private String url;
 
+    private final WriteDbService writeServices;
+
+    public RestAlfaBankApplication(WriteDbService writeServices) {
+        this.writeServices = writeServices;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(RestAlfaBankApplication.class, args);
@@ -25,6 +31,6 @@ public class RestAlfaBankApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
+        writeServices.writeXmlToDb(file, classpath, url);
     }
 }

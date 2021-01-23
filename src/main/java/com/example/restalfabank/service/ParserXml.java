@@ -33,7 +33,7 @@ public class ParserXml {
         return items;
     }
 
-    public void parseXml(String filePath, String classpath, String urlPath) {
+    public void parseXml(String filePath, String classpath, String urlPath) throws MalformedURLException, URISyntaxException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = null;
 
@@ -64,18 +64,8 @@ public class ParserXml {
         }
 
         if (urlPath.length() != 0) {
-            URL url = null;
-            try {
-                url = new URL(urlPath);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            File file = null;
-            try {
-                file = Paths.get(url.toURI()).toFile();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
+            URL url = new URL(urlPath);
+            File file = Paths.get(url.toURI()).toFile();
             try {
                 parser.parse(file, handler);
             } catch (SAXException | IOException e) {
@@ -88,7 +78,7 @@ public class ParserXml {
     private static class XMLHandler extends DefaultHandler {
 
         @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        public void startElement(String uri, String localName, String qName, Attributes attributes) {
             Integer contained_in;
 
             if (stack.empty()) {
@@ -108,7 +98,7 @@ public class ParserXml {
                 String color = attributes.getValue("color");
 
                 Box box = boxes.stream()
-                        .filter(boxes -> contained_in.equals(boxes.getId()))
+                        .filter(boxes -> contained_in == boxes.getId())
                         .findAny()
                         .orElse(null);
 
@@ -117,7 +107,7 @@ public class ParserXml {
         }
 
         @Override
-        public void endElement(String uri, String localName, String qName) throws SAXException {
+        public void endElement(String uri, String localName, String qName) {
             if (qName.equals("Box")) {
                 stack.pop();
             }
