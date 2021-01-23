@@ -2,7 +2,6 @@ package com.example.restalfabank.service;
 
 import com.example.restalfabank.model.Item;
 import com.example.restalfabank.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +15,17 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+
+    public Item getById(Integer id) {
+        return itemRepository.getOne(id);
+    }
+
+    public void save(Item item) {
+        itemRepository.save(item);
+    }
+
     public List<Item> getAll() {
         return itemRepository.findAll();
     }
 
-    public Item save(Item item) {
-        return itemRepository.save(item);
-    }
 }

@@ -1,5 +1,7 @@
 package com.example.restalfabank.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class Item {
     @Id
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contained_in")
     private Box box;

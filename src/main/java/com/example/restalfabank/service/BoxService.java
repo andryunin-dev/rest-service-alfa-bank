@@ -15,11 +15,16 @@ public class BoxService {
         this.boxRepository = boxRepository;
     }
 
-    public List<Box> getAll() {
-        return boxRepository.findAll();
+
+    public Box getById(Integer id) {
+        return boxRepository.getOne(id);
     }
 
-    public Box save(Box box) {
-        return boxRepository.save(box);
+    public void save(Box box) {
+        boxRepository.save(box);
+    }
+
+    public List<Box> getAll() {
+        return boxRepository.findAll();
     }
 }

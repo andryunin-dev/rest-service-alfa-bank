@@ -1,5 +1,7 @@
 package com.example.restalfabank.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ public class Box {
     @Column(name = "contained_in")
     private Integer contained_in;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "box")
     private Set<Item> items;
 
