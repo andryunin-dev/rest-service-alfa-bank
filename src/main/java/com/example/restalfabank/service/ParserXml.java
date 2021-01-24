@@ -33,7 +33,7 @@ public class ParserXml {
         return items;
     }
 
-    public void parseXml(String filePath, String classpath, String urlPath) throws MalformedURLException, URISyntaxException {
+    public void parseXml(String filePath, String classpath, String urlPath) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = null;
 
@@ -64,8 +64,20 @@ public class ParserXml {
         }
 
         if (urlPath.length() != 0) {
-            URL url = new URL(urlPath);
-            File file = Paths.get(url.toURI()).toFile();
+
+            URL url = null;
+            try {
+                url = new URL(urlPath);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            File file = null;
+            try {
+                file = Paths.get(url.toURI()).toFile();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
             try {
                 parser.parse(file, handler);
             } catch (SAXException | IOException e) {

@@ -2,9 +2,9 @@ package com.example.restalfabank.controller;
 
 import com.example.restalfabank.model.Box;
 import com.example.restalfabank.model.Item;
-import com.example.restalfabank.service.BoxService;
+import com.example.restalfabank.service.BoxServiceImpl;
 import com.example.restalfabank.service.FilterService;
-import com.example.restalfabank.service.ItemService;
+import com.example.restalfabank.service.ItemServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import java.util.List;
 @RequestMapping("/")
 public class ItemController {
 
-    private final BoxService boxService;
-    private final ItemService itemService;
+    private final BoxServiceImpl boxService;
+    private final ItemServiceImpl itemService;
 
-    public ItemController(BoxService boxService, ItemService itemService) {
+    public ItemController(BoxServiceImpl boxService, ItemServiceImpl itemService) {
         this.boxService = boxService;
         this.itemService = itemService;
     }

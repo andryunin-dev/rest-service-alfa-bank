@@ -4,17 +4,15 @@ import com.example.restalfabank.model.Box;
 import com.example.restalfabank.model.Item;
 import org.springframework.stereotype.Service;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.TreeSet;
 
 @Service
 public class WriteDbService {
 
-    private final BoxService boxService;
-    private final ItemService itemService;
+    private final BoxServiceImpl boxService;
+    private final ItemServiceImpl itemService;
 
-    public WriteDbService(BoxService boxService, ItemService itemService) {
+    public WriteDbService(BoxServiceImpl boxService, ItemServiceImpl itemService) {
         this.boxService = boxService;
         this.itemService = itemService;
     }
@@ -35,11 +33,7 @@ public class WriteDbService {
 
     public void writeXmlToDb(String file, String classpath, String url) {
         ParserXml parserXml = new ParserXml();
-        try {
-            parserXml.parseXml(file, classpath, url);
-        } catch (MalformedURLException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+        parserXml.parseXml(file, classpath, url);
 
         TreeSet<Box> boxes = ParserXml.getBoxes();
         TreeSet<Item> items = ParserXml.getItems();
