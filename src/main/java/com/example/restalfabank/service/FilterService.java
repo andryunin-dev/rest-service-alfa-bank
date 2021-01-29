@@ -89,7 +89,7 @@ public class FilterService {
 
             while (!queue.isEmpty()) {
                 for (Box box : boxes) {
-                    if (box.getContained_in() != null && box.getContained_in().equals(queue.peek())) {
+                    if (box.getContainedIn() != null && box.getContainedIn().equals(queue.peek())) {
                         idFilter.add(box.getId());
                         queue.add(box.getId());
                     }

@@ -5,6 +5,7 @@ import com.example.restalfabank.model.Item;
 import com.example.restalfabank.service.BoxServiceImpl;
 import com.example.restalfabank.service.FilterService;
 import com.example.restalfabank.service.ItemServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/")
 public class ItemController {
 
     private final BoxServiceImpl boxService;
     private final ItemServiceImpl itemService;
-
-    public ItemController(BoxServiceImpl boxService, ItemServiceImpl itemService) {
-        this.boxService = boxService;
-        this.itemService = itemService;
-    }
-
 
     @RequestMapping(value = "test", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Integer>> getAllItems(

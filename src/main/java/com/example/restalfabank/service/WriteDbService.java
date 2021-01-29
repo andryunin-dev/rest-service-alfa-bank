@@ -2,20 +2,17 @@ package com.example.restalfabank.service;
 
 import com.example.restalfabank.model.Box;
 import com.example.restalfabank.model.Item;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.TreeSet;
 
 @Service
+@RequiredArgsConstructor
 public class WriteDbService {
 
     private final BoxServiceImpl boxService;
     private final ItemServiceImpl itemService;
-
-    public WriteDbService(BoxServiceImpl boxService, ItemServiceImpl itemService) {
-        this.boxService = boxService;
-        this.itemService = itemService;
-    }
 
     private void writeDb(TreeSet<Box> boxes, TreeSet<Item> items) {
         if (!boxes.isEmpty()) {

@@ -102,6 +102,7 @@ public class ParserXml {
             if (qName.equals("Box")) {
                 Integer id = Integer.parseInt(attributes.getValue("id"));
                 boxes.add(new Box(id, contained_in));
+                new Box(5, 5);
                 stack.push(id);
             }
 
