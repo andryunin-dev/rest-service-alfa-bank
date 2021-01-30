@@ -14,12 +14,24 @@ public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
 
-    public List<Item> getAll() {
+    public void save(Item item) {
+        itemRepository.save(item);
+    }
+
+    public List<Item> findAll() {
         return itemRepository.findAll();
     }
 
-    public void save(Item item) {
-        itemRepository.save(item);
+    public List<Item> findByColor(String color) {
+        return itemRepository.findByColor(color);
+    }
+
+    public List<Item> findByBoxId(Integer id) {
+        return itemRepository.findByBoxId(id);
+    }
+
+    public List<Item> findByBoxIdAndColor(Integer id, String color) {
+        return itemRepository.findByBoxIdAndColor(id, color);
     }
 
 }

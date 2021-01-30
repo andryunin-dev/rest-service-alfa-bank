@@ -6,8 +6,14 @@ import java.util.List;
 
 public interface ItemService {
 
-    List<Item> getAll();
-
     void save(Item item);
+
+    List<Item> findAll();
+
+    List<Item> findByColor(String color);
+
+    List<Item> findByBoxId(Integer id);
+
+    List<Item> findByBoxIdAndColor(Integer id, String color);
 
 }
