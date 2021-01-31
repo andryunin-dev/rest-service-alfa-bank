@@ -42,5 +42,4 @@ You can also change the port by adding it as the second argument
 java -jar target/*.jar --classpath=src\\main\\resources\\file\\input.xml --port=8087
 ```
 
-After starting the application, you can send POST requests to the address http://localhost/test with the "box" and "color" parameters. 
-Parameters are not case sensitive. You can also pass "null" in the request.
+After starting the application, you can send POST requests to the address http://localhost/test with the "box" and "color" parameters.
