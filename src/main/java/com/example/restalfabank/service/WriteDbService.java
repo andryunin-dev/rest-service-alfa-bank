@@ -28,7 +28,9 @@ public class WriteDbService {
 
         Task task = taskFactory.createTask(argument);
 
-        task.execute(argument.split("=")[1]);
+        if (!argument.isEmpty()) {
+            task.execute(argument.split("=")[1]);
+        }
 
         TreeSet<Box> boxes = ParserXml.getBoxes();
 
